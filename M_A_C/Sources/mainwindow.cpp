@@ -18,7 +18,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_play_puaseButton_clicked()
 {
-    QPixmap pixmap(":/new/iconos/Iconos/icono-pause.png");
-    QIcon icono_pausa(pixmap);
-    ui->play_puaseButton->setIcon(icono_pausa);
+    QPushButton *boton = ui->play_puaseButton;
+    boton->setCheckable(true);
+
+    QPixmap pixmap_pause(":/new/iconos/Iconos/icono-pause.png");
+    QIcon icono_pausa(pixmap_pause);
+
+    QPixmap pixmap_play(":/new/iconos/Iconos/icono_play.png");
+    QIcon icono_play(pixmap_play);
+
+    if (!boton->isChecked()) {
+        boton->setIcon(icono_pausa);
+    } else {
+        boton->setIcon(icono_play);
+    }
+
+
 }
+
+
