@@ -273,19 +273,6 @@
        <height>349</height>
       </rect>
      </property>
-     <widget class="QQuickWidget" name="quickWidget">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>130</y>
-        <width>300</width>
-        <height>200</height>
-       </rect>
-      </property>
-      <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
-      </property>
-     </widget>
     </widget>
    </widget>
   </widget>
@@ -301,13 +288,6 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>QQuickWidget</class>
-   <extends>QWidget</extends>
-   <header>QtQuickWidgets/QQuickWidget</header>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="../Resources/iconos.qrc"/>
  </resources>
