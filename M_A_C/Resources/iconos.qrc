@@ -2,5 +2,7 @@
     <qresource prefix="/new/iconos">
         <file>Iconos/icono_play.png</file>
         <file>Iconos/icono-pause.png</file>
+        <file>Iconos/icon-next.png</file>
+        <file>Iconos/icon-previus.png</file>
     </qresource>
 </RCC>

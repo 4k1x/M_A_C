@@ -35,3 +35,5 @@ FORMS += \
 
 RESOURCES += \
         Resources/iconos.qrc
+
+DISTFILES +=
