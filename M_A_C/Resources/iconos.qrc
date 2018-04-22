@@ -5,4 +5,7 @@
         <file>Iconos/icon-next.png</file>
         <file>Iconos/icon-previus.png</file>
     </qresource>
+    <qresource prefix="/new/sound">
+        <file>sound/Canserbero-Mundo-de-piedra.mp3</file>
+    </qresource>
 </RCC>

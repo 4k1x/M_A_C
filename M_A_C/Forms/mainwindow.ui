@@ -69,7 +69,7 @@
       <x>0</x>
       <y>410</y>
       <width>801</width>
-      <height>81</height>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -125,7 +125,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSlider" name="horizontalSlider">
+        <widget class="QSlider" name="statusBar">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -159,9 +159,9 @@
       <widget class="QWidget" name="horizontalWidget_2" native="true">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="pushButton_8">
+         <widget class="QPushButton" name="btn_hilo">
           <property name="text">
-           <string>PushButton</string>
+           <string>hilo</string>
           </property>
          </widget>
         </item>
@@ -235,9 +235,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_5">
+         <widget class="QPushButton" name="stop">
           <property name="text">
-           <string>PushButton</string>
+           <string>stop</string>
           </property>
          </widget>
         </item>
@@ -291,22 +291,5 @@
  <resources>
   <include location="../Resources/iconos.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>horizontalSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber_2</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>112</x>
-     <y>357</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>49</x>
-     <y>359</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

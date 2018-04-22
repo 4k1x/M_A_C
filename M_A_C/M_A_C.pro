@@ -31,7 +31,7 @@ SOURCES +=  \
     Sources/mediaplayer.cpp
 
 HEADERS += \
-        Headers/mainwindow.h \
+        Sources/mainwindow.h \
     Sources/threadplayer.h \
     Sources/mediaplayer.h
 

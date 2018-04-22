@@ -1,5 +1,7 @@
-#include "Headers/mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "threadplayer.h"
+#include "mediaplayer.h"
 #include "QWidget"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -8,11 +10,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+     mPlayer = new MediaPlayer();
+     //ui->statusBar->setMaximum(mPlayer->duration());
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete tPlayer;
+    delete mPlayer;
 }
 
 
@@ -30,10 +37,18 @@ void MainWindow::on_play_puaseButton_clicked()
 
     if (!boton->isChecked()) {
         boton->setIcon(icono_pausa);
+        mPlayer->play();
     } else {
         boton->setIcon(icono_play);
-
+        mPlayer->pause();
     }
 }
 
 
+
+
+
+void MainWindow::on_statusBar_valueChanged(int value)
+{
+    mPlayer->setPosition(value);
+}

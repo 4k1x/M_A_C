@@ -1,11 +1,14 @@
 #include "threadplayer.h"
+#include "mediaplayer.h"
 
-ThreadPlayer::ThreadPlayer(QObject *parent) : QThread(parent)
+ThreadPlayer::ThreadPlayer() : QThread()
 {
 
 }
 
 void ThreadPlayer::run()
 {
-
+    player = new MediaPlayer();
 }
+
+
