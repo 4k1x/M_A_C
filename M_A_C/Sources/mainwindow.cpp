@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
@@ -31,6 +32,7 @@ void MainWindow::on_play_puaseButton_clicked()
         boton->setIcon(icono_pausa);
     } else {
         boton->setIcon(icono_play);
+
     }
 }
 
