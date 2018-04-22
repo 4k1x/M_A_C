@@ -32,8 +32,6 @@ void MainWindow::on_play_puaseButton_clicked()
     } else {
         boton->setIcon(icono_play);
     }
-
-
 }
 
 
