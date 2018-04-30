@@ -3,15 +3,20 @@
 #include "threadplayer.h"
 #include "mediaplayer.h"
 #include "QWidget"
+#include <QDir>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-     mPlayer = new MediaPlayer();
-     //ui->statusBar->setMaximum(mPlayer->duration());
+    QThread *th = new QThread();
+   mPlayer = new MediaPlayer();
+   mPlayer->moveToThread(th);
+   th->start();
+   qDebug() << th->isRunning();
+   cargarTree();
 
 }
 
@@ -20,6 +25,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete tPlayer;
     delete mPlayer;
+
 }
 
 
@@ -38,17 +44,20 @@ void MainWindow::on_play_puaseButton_clicked()
     if (!boton->isChecked()) {
         boton->setIcon(icono_pausa);
         mPlayer->play();
+
     } else {
         boton->setIcon(icono_play);
-        mPlayer->pause();
+        mPlayer->stop();
     }
 }
 
-
-
-
-
-void MainWindow::on_statusBar_valueChanged(int value)
+void MainWindow::cargarTree()
 {
-    mPlayer->setPosition(value);
+    modelo.setRootPath("");
+    modelo.index("/home/clase/");
+    QTreeView *tree = ui->treeView;
+    tree->setModel(&modelo);
+    tree->setColumnHidden(1,true);
+    tree->setColumnHidden(2,true);
+    tree->setColumnHidden(3,true);
 }

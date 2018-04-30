@@ -161,7 +161,7 @@
         <item>
          <widget class="QPushButton" name="btn_hilo">
           <property name="text">
-           <string>hilo</string>
+           <string>Sconder</string>
           </property>
          </widget>
         </item>
@@ -246,34 +246,27 @@
      </item>
     </layout>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
+   <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>49</y>
-      <width>781</width>
+      <x>15</x>
+      <y>61</y>
+      <width>771</width>
       <height>321</height>
      </rect>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>779</width>
-       <height>319</height>
-      </rect>
-     </property>
-    </widget>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <attribute name="headerHighlightSections">
+     <bool>true</bool>
+    </attribute>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

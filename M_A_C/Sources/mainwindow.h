@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include "threadplayer.h"
+#include <QWidget>
+#include <QPushButton>
+#include <QDir>
+#include <QFileSystemModel>
 
 
 namespace Ui {
@@ -19,20 +23,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
 private slots:
 
     void on_play_puaseButton_clicked();
 
-
-    void on_horizontalSlider_valueChanged(int value);
-
-    void on_statusBar_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
     ThreadPlayer *tPlayer;
     MediaPlayer *mPlayer;
     QThread *hilo ;
+    QFileSystemModel modelo;
+    void cargarTree();
+
 
     
 };

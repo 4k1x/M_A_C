@@ -10,7 +10,7 @@ class ThreadPlayer : public QThread
 public:
     explicit ThreadPlayer();
 
-    void run();
+    void run() override;
      MediaPlayer * reproductor(){return player;}
 private:
     MediaPlayer *player;

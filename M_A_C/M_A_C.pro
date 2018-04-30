@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui concurrent widgets
 QT += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -41,4 +41,6 @@ FORMS += \
 RESOURCES += \
         Resources/iconos.qrc
 
-DISTFILES +=
+
+target.path = $$[QT_INSTALL_EXAMPLES]/qtconcurrent/progressdialog
+INSTALLS += target
