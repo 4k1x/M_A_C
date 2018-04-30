@@ -35,6 +35,7 @@ private:
     MediaPlayer *mPlayer;
     QThread *hilo ;
     QFileSystemModel modelo;
+    QDir path;
     void cargarTree();
 
 

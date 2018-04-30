@@ -53,10 +53,11 @@ void MainWindow::on_play_puaseButton_clicked()
 
 void MainWindow::cargarTree()
 {
-    modelo.setRootPath("");
-    modelo.index("/home/clase/");
+    modelo.setRootPath("/home/clase");
+    modelo.index("/home/clase");
     QTreeView *tree = ui->treeView;
     tree->setModel(&modelo);
+    tree->setRootIndex(modelo.index("/home/clase"));
     tree->setColumnHidden(1,true);
     tree->setColumnHidden(2,true);
     tree->setColumnHidden(3,true);

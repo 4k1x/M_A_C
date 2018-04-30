@@ -261,8 +261,22 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="lineWidth">
+     <number>10</number>
+    </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>false</bool>
+    </property>
+    <property name="uniformRowHeights">
+     <bool>false</bool>
     </property>
     <attribute name="headerHighlightSections">
      <bool>true</bool>
