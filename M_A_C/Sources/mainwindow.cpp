@@ -5,18 +5,22 @@
 #include "QWidget"
 #include <QDir>
 #include <QPushButton>
+#include <QFileSystemModel>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    QThread *th = new QThread();
+   ui->setupUi(this);
+
+
+
+   QThread *th = new QThread();
    mPlayer = new MediaPlayer();
    mPlayer->moveToThread(th);
    th->start();
    qDebug() << th->isRunning();
-   cargarTree();
+   cargarTreeMusica();
 
 }
 
@@ -32,6 +36,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_play_puaseButton_clicked()
 {
+
     QPushButton *boton = ui->play_puaseButton;
     boton->setCheckable(true);
 
@@ -47,18 +52,37 @@ void MainWindow::on_play_puaseButton_clicked()
 
     } else {
         boton->setIcon(icono_play);
-        mPlayer->stop();
+        mPlayer->pause();
     }
 }
 
-void MainWindow::cargarTree()
+void MainWindow::cargarTreeMusica()
 {
     modelo.setRootPath("/home/clase");
     modelo.index("/home/clase");
-    QTreeView *tree = ui->treeView;
-    tree->setModel(&modelo);
-    tree->setRootIndex(modelo.index("/home/clase"));
-    tree->setColumnHidden(1,true);
-    tree->setColumnHidden(2,true);
-    tree->setColumnHidden(3,true);
+    treeMusica = ui->treeView_musica;
+    treeMusica->setModel(&modelo);
+    treeMusica->setRootIndex(modelo.index("/home/clase"));
+    treeMusica->setColumnHidden(1,true);
+    treeMusica->setColumnHidden(2,true);
+    treeMusica->setColumnHidden(3,true);
+}
+
+void MainWindow::on_treeView_musica_clicked(const QModelIndex &index)
+{
+    QString path = modelo.filePath(index);
+    QFileInfo *info = new QFileInfo(path);
+    if (info->isDir()) {
+        QDir dir = info->dir();
+
+    }
+    else {
+        if ("mp3" == info->suffix()) {
+            qDebug() << info->absoluteFilePath();
+            qDebug() << info->suffix();
+            mPlayer->pause();
+            mPlayer->setMedia(QUrl::fromLocalFile(info->absoluteFilePath()));
+            mPlayer->play();
+        }
+    }
 }

@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QDir>
 #include <QFileSystemModel>
+#include <QTreeView>
 
 
 namespace Ui {
@@ -29,14 +30,16 @@ private slots:
     void on_play_puaseButton_clicked();
 
 
+    void on_treeView_musica_clicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     ThreadPlayer *tPlayer;
     MediaPlayer *mPlayer;
     QThread *hilo ;
     QFileSystemModel modelo;
-    QDir path;
-    void cargarTree();
+    QTreeView *treeMusica;
+    void cargarTreeMusica();
 
 
     
