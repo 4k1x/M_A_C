@@ -20,7 +20,7 @@
       <x>0</x>
       <y>390</y>
       <width>801</width>
-      <height>91</height>
+      <height>92</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -108,16 +108,79 @@
      </item>
      <item>
       <widget class="QWidget" name="horizontalWidget_2" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPushButton" name="btn_hilo">
+         <widget class="QToolButton" name="mute">
           <property name="text">
-           <string>Sconder</string>
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../Resources/iconos.qrc">
+            <normaloff>:/new/iconos/Iconos/icono-mute.png</normaloff>:/new/iconos/Iconos/icono-mute.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_9">
+         <widget class="QToolButton" name="volumen_down">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../Resources/iconos.qrc">
+            <normaloff>:/new/iconos/Iconos/icono-menos.png</normaloff>:/new/iconos/Iconos/icono-menos.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="volumen">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="volumen_up">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../Resources/iconos.qrc">
+            <normaloff>:/new/iconos/Iconos/icono-mas.png</normaloff>:/new/iconos/Iconos/icono-mas.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btn_back">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -163,7 +226,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_6">
+         <widget class="QPushButton" name="btn_next">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -186,9 +249,25 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="stop">
+         <widget class="QPushButton" name="btn_stop">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
-           <string>stop</string>
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../Resources/iconos.qrc">
+            <normaloff>:/new/iconos/Iconos/icono-stop.png</normaloff>:/new/iconos/Iconos/icono-stop.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
           </property>
          </widget>
         </item>

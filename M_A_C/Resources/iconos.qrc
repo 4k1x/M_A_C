@@ -4,6 +4,10 @@
         <file>Iconos/icono-pause.png</file>
         <file>Iconos/icon-next.png</file>
         <file>Iconos/icon-previus.png</file>
+        <file>Iconos/icono-stop.png</file>
+        <file>Iconos/icono-mas.png</file>
+        <file>Iconos/icono-menos.png</file>
+        <file>Iconos/icono-mute.png</file>
     </qresource>
     <qresource prefix="/new/sound">
         <file>sound/Canserbero-Mundo-de-piedra.mp3</file>

@@ -32,6 +32,18 @@ private slots:
 
     void on_treeView_musica_clicked(const QModelIndex &index);
 
+    void on_treeView_musica_pressed(const QModelIndex &index);
+
+    void on_btn_next_clicked();
+
+    void on_btn_back_clicked();
+
+    void on_btn_stop_clicked();
+
+    void on_mute_clicked();
+
+    void on_volumen_up_clicked();
+
 private:
     Ui::MainWindow *ui;
     ThreadPlayer *tPlayer;
@@ -40,7 +52,7 @@ private:
     QFileSystemModel modelo;
     QTreeView *treeMusica;
     void cargarTreeMusica();
-
+    QPushButton *btn_play;
 
     
 };

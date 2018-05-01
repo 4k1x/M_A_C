@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QPushButton>
 #include <QFileSystemModel>
+#include <QException>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
    qDebug() << th->isRunning();
    cargarTreeMusica();
 
+    btn_play = ui->play_puaseButton;
+    btn_play->setCheckable(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -37,21 +41,18 @@ MainWindow::~MainWindow()
 void MainWindow::on_play_puaseButton_clicked()
 {
 
-    QPushButton *boton = ui->play_puaseButton;
-    boton->setCheckable(true);
-
     QPixmap pixmap_pause(":/new/iconos/Iconos/icono-pause.png");
     QIcon icono_pausa(pixmap_pause);
 
     QPixmap pixmap_play(":/new/iconos/Iconos/icono_play.png");
     QIcon icono_play(pixmap_play);
 
-    if (!boton->isChecked()) {
-        boton->setIcon(icono_pausa);
+    if (btn_play->isChecked()) {
+        btn_play->setIcon(icono_pausa);
         mPlayer->play();
 
     } else {
-        boton->setIcon(icono_play);
+        btn_play->setIcon(icono_play);
         mPlayer->pause();
     }
 }
@@ -70,11 +71,17 @@ void MainWindow::cargarTreeMusica()
 
 void MainWindow::on_treeView_musica_clicked(const QModelIndex &index)
 {
+
+}
+
+void MainWindow::on_treeView_musica_pressed(const QModelIndex &index)
+{
     QString path = modelo.filePath(index);
     QFileInfo *info = new QFileInfo(path);
     if (info->isDir()) {
-        QDir dir = info->dir();
-
+        QDir *dir = new QDir(path);
+        mPlayer->crear_playList(dir);
+        mPlayer->play();
     }
     else {
         if ("mp3" == info->suffix()) {
@@ -85,4 +92,39 @@ void MainWindow::on_treeView_musica_clicked(const QModelIndex &index)
             mPlayer->play();
         }
     }
+}
+
+void MainWindow::on_btn_next_clicked()
+{
+    mPlayer->playlist->next();
+}
+
+void MainWindow::on_btn_back_clicked()
+{
+    mPlayer->playlist->previous();
+
+}
+
+void MainWindow::on_btn_stop_clicked()
+{
+    QPixmap pixmap_play(":/new/iconos/Iconos/icono_play.png");
+    QIcon icono_play(pixmap_play);
+    btn_play->setChecked(false);
+    btn_play->setIcon(icono_play);
+    mPlayer->stop();
+}
+
+void MainWindow::on_mute_clicked()
+{
+    if (mPlayer->isMuted()) {
+        mPlayer->setMuted(false);
+    }else {
+        mPlayer->setMuted(true);
+    }
+}
+
+void MainWindow::on_volumen_up_clicked()
+{
+   QSlider volumen = ui->volumen;
+   volumen.setValue();
 }
