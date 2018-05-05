@@ -9,6 +9,13 @@
 #include <QException>
 #include <QDateTime>
 
+/*
+ *  HAY QUE MODIFICAR LOS CONNECT PARA LA BARRA DE AUDIO
+ *  Y MPLAYER DE DURACION ETC TENGO QUE CREAR SLOT PARA LA BARRA Y
+ * UN METODO PARA QUE A;ADA TIEMPO
+ *
+ */
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
