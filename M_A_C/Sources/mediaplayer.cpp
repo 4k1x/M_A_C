@@ -4,15 +4,19 @@
 #include <QMediaPlaylist>
 #include <QDir>
 #include <QFileInfo>
+#include <QMainWindow>
 
 MediaPlayer::MediaPlayer()
 {
-    this->setMedia(QUrl::fromLocalFile("/home/clase/Descargas/Canserbero-Mundo-de-piedra.mp3"));
+    playlist = new QMediaPlaylist;
+    this->setPlaylist(playlist);
+    playlist->addMedia(QUrl::fromLocalFile("/home/clase/Descargas/Canserbero-Mundo-de-piedra.mp3"));
+
 }
 
 void MediaPlayer::crear_playList(const QDir *carpeta)
 {
-    playlist = new QMediaPlaylist;
+
     QFileInfoList listaFicheros = carpeta->entryInfoList(QDir::Files);
     for (int i = 1; i < listaFicheros.size(); i++)
     {
@@ -22,5 +26,33 @@ void MediaPlayer::crear_playList(const QDir *carpeta)
         }
 
     }
-    this->setPlaylist(playlist);
+     qDebug() << playlist->mediaCount();
 }
+
+int MediaPlayer::next()
+{
+    if (playlist->mediaCount() > 1) {
+        playlist->next();
+        if (playlist->currentIndex() < 0) {
+           return 1;
+           qDebug() << playlist->currentIndex();
+        }
+        return 0;
+         qDebug() << playlist->currentIndex();
+    }
+}
+
+int MediaPlayer::back()
+{
+    if (playlist->mediaCount() > 1) {
+       playlist->previous();
+       if (playlist->currentIndex() < 0) {
+          return 1;
+          qDebug() << playlist->currentIndex();
+       }
+       return 0;
+    }
+}
+
+
+

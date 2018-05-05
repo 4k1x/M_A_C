@@ -14,6 +14,9 @@ public:
     QMediaPlaylist *playlist;
 
     void crear_playList(const QDir *carpeta);
+    void silenciar();
+    int next();
+    int back();
 
 };
 
