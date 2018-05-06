@@ -16,12 +16,14 @@ MediaPlayer::MediaPlayer()
 
 void MediaPlayer::crear_playList(const QDir *carpeta)
 {
-
+    QStringList lista;
     QFileInfoList listaFicheros = carpeta->entryInfoList(QDir::Files);
     for (int i = 1; i < listaFicheros.size(); i++)
     {
         if (listaFicheros.at(i).suffix() == "mp3") {
+            lista << carpeta->entryInfoList(QDir::Files).at(i).fileName();
             playlist->addMedia(QUrl::fromLocalFile(listaFicheros.at(i).filePath()));
+
             qDebug() << listaFicheros.at(i).filePath();
         }
 

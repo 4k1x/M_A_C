@@ -31,9 +31,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->volumen->setValue(mPlayer->volume());
     connect(ui->volumen,SIGNAL(valueChanged(int)),mPlayer,SLOT(setVolume(int)));
     connect(mPlayer,SIGNAL(volumeChanged(int)),ui->volumen,SLOT(setValue(int)));
-    connect(mPlayer,SIGNAL(positionChanged(qint64)),ui->duracion,SLOT(setValue(int)));
-    connect(ui->duracion,SIGNAL(valueChanged(int)),mPlayer,SLOT(setPosition(qint64)));
-    connect(mPlayer,SIGNAL(positionChanged(qint64)),ui->posicion,SLOT(display(QString)));
+    connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(positionChanged(qint64)));
+    connect(mPlayer,SIGNAL(durationChanged(qint64)),this,SLOT(durationChanged(qint64)));
+    connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(posicion(qint64)));
+    connect(mPlayer,SIGNAL(durationChanged(qint64)),this,SLOT(duracion(qint64)));
+
 }
 
 MainWindow::~MainWindow()
@@ -75,6 +77,7 @@ void MainWindow::on_treeView_musica_pressed(const QModelIndex &index)
     if (info->isDir()) {
         QDir *dir = new QDir(path);
         mPlayer->crear_playList(dir);
+
         mPlayer->play();
     }
     else {
@@ -94,6 +97,7 @@ void MainWindow::on_btn_next_clicked()
     if (next == 1) {
         setBtnToPlay();
     }
+
 }
 
 void MainWindow::on_btn_back_clicked()
@@ -101,6 +105,9 @@ void MainWindow::on_btn_back_clicked()
   int back = mPlayer->back();
    if (back == 1) {
        setBtnToPlay();
+   }
+   else {
+       ui->duracion->setMaximum(back);
    }
 }
 
@@ -148,3 +155,52 @@ void MainWindow::setBtnToPause()
     btn_play->setChecked(true);
     btn_play->setIcon(icono_pausa);
 }
+
+void MainWindow::on_duracion_sliderMoved(int position)
+{
+    qint64 valor = position * 1000;
+    mPlayer->setPosition(valor);
+}
+
+void MainWindow::durationChanged(qint64 duration)
+{
+    int m_duration = duration / 1000;
+    ui->duracion->setMaximum(m_duration);
+   // ui->duracionNum->display(m_duration);
+}
+
+void MainWindow::positionChanged(qint64 position)
+{
+    if (!ui->duracion->isSliderDown())
+        ui->duracion->setValue(position / 1000);
+}
+
+void MainWindow::duracion(qint64 duration)
+{
+    QTime time(0,0,0,0);
+    time = time.addMSecs(duration);
+    QString tPosition;
+    int min = time.minute();
+    int sec = time.second();
+    ui->duracionNum->display(QString::number(min) + ":" + QString::number(sec));
+    qDebug() << time.minute();
+    qDebug() << time.second();
+
+}
+
+void MainWindow::posicion(qint64 position)
+{
+    QTime time(0,0,0,0);
+    time = time.addMSecs(position);
+    QString tPosition;
+    int min = time.minute();
+    int sec = time.second();
+    ui->posicion->display(QString::number(min) + ":" + QString::number(sec));
+    qDebug() << time.minute();
+    qDebug() << time.second();
+}
+
+
+
+
+

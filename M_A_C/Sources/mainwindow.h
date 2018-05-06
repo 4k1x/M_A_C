@@ -44,6 +44,16 @@ private slots:
 
     void on_volumen_down_clicked();
 
+    void durationChanged(qint64 duration);
+
+    void positionChanged(qint64 position);
+
+    void on_duracion_sliderMoved(int position);
+
+    void duracion(qint64 duration);
+
+    void posicion(qint64 position);
+
 signals:
 
 
@@ -57,7 +67,8 @@ private:
     void setBtnToPlay();
     void setBtnToPause();
     void setPosicion();
-    
+
+
 };
 
 #endif // MAINWINDOW_H
