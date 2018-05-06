@@ -1,8 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "mediaplayer.h"
 #include <QMainWindow>
-#include "threadplayer.h"
 #include <QWidget>
 #include <QPushButton>
 #include <QDir>
@@ -59,15 +58,17 @@ signals:
 
 private:
     Ui::MainWindow *ui;
+
     MediaPlayer *mPlayer;
+
     QFileSystemModel modelo;
     QTreeView *treeMusica;
-    void cargarTreeMusica();
     QPushButton *btn_play;
+
+    void cargarTreeMusica();
     void setBtnToPlay();
     void setBtnToPause();
     void setPosicion();
-
 
 };
 

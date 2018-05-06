@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "threadplayer.h"
 #include "mediaplayer.h"
 #include "QWidget"
 #include <QDir>
@@ -8,13 +7,6 @@
 #include <QFileSystemModel>
 #include <QException>
 #include <QDateTime>
-
-/*
- *  HAY QUE MODIFICAR LOS CONNECT PARA LA BARRA DE AUDIO
- *  Y MPLAYER DE DURACION ETC TENGO QUE CREAR SLOT PARA LA BARRA Y
- * UN METODO PARA QUE A;ADA TIEMPO
- *
- */
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -46,8 +38,6 @@ MainWindow::~MainWindow()
     delete mPlayer;
 }
 
-
-
 void MainWindow::on_play_puaseButton_clicked()
 {
     if (btn_play->isChecked()) {
@@ -58,19 +48,6 @@ void MainWindow::on_play_puaseButton_clicked()
         mPlayer->pause();
     }
 }
-
-void MainWindow::cargarTreeMusica()
-{
-    modelo.setRootPath(QDir::homePath());
-    modelo.index(QDir::homePath());
-    treeMusica = ui->treeView_musica;
-    treeMusica->setModel(&modelo);
-    treeMusica->setRootIndex(modelo.index(QDir::homePath()));
-    treeMusica->setColumnHidden(1,true);
-    treeMusica->setColumnHidden(2,true);
-    treeMusica->setColumnHidden(3,true);
-}
-
 
 void MainWindow::on_treeView_musica_pressed(const QModelIndex &index)
 {
@@ -99,7 +76,6 @@ void MainWindow::on_btn_next_clicked()
     if (next == 1) {
         setBtnToPlay();
     }
-
 }
 
 void MainWindow::on_btn_back_clicked()
@@ -132,7 +108,6 @@ void MainWindow::on_volumen_up_clicked()
 {
     int volumen = mPlayer->volume();
     mPlayer->setVolume(volumen + 5);
-    qDebug() << volumen;
 }
 
 void MainWindow::on_volumen_down_clicked()
@@ -140,22 +115,6 @@ void MainWindow::on_volumen_down_clicked()
     int volumen = mPlayer->volume();
     mPlayer->setVolume(volumen - 5);
     qDebug() << volumen;
-}
-
-void MainWindow::setBtnToPlay()
-{
-    QPixmap pixmap_play(":/new/iconos/Iconos/icono_play.png");
-    QIcon icono_play(pixmap_play);
-    btn_play->setChecked(false);
-    btn_play->setIcon(icono_play);
-}
-
-void MainWindow::setBtnToPause()
-{
-    QPixmap pixmap_pause(":/new/iconos/Iconos/icono-pause.png");
-    QIcon icono_pausa(pixmap_pause);
-    btn_play->setChecked(true);
-    btn_play->setIcon(icono_pausa);
 }
 
 void MainWindow::on_duracion_sliderMoved(int position)
@@ -185,9 +144,6 @@ void MainWindow::duracion(qint64 duration)
     int min = time.minute();
     int sec = time.second();
     ui->duracionNum->display(QString::number(min) + ":" + QString::number(sec));
-    qDebug() << time.minute();
-    qDebug() << time.second();
-
 }
 
 void MainWindow::posicion(qint64 position)
@@ -198,10 +154,35 @@ void MainWindow::posicion(qint64 position)
     int min = time.minute();
     int sec = time.second();
     ui->posicion->display(QString::number(min) + ":" + QString::number(sec));
-    qDebug() << time.minute();
-    qDebug() << time.second();
 }
 
+void MainWindow::setBtnToPlay()
+{
+    QPixmap pixmap_play(":/new/iconos/Iconos/icono_play.png");
+    QIcon icono_play(pixmap_play);
+    btn_play->setChecked(false);
+    btn_play->setIcon(icono_play);
+}
+
+void MainWindow::setBtnToPause()
+{
+    QPixmap pixmap_pause(":/new/iconos/Iconos/icono-pause.png");
+    QIcon icono_pausa(pixmap_pause);
+    btn_play->setChecked(true);
+    btn_play->setIcon(icono_pausa);
+}
+
+void MainWindow::cargarTreeMusica()
+{
+    modelo.setRootPath(QDir::homePath());
+    modelo.index(QDir::homePath());
+    treeMusica = ui->treeView_musica;
+    treeMusica->setModel(&modelo);
+    treeMusica->setRootIndex(modelo.index(QDir::homePath()));
+    treeMusica->setColumnHidden(1,true);
+    treeMusica->setColumnHidden(2,true);
+    treeMusica->setColumnHidden(3,true);
+}
 
 
 

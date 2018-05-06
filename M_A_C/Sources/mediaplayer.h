@@ -8,10 +8,11 @@
 class MediaPlayer : public QMediaPlayer
 {
 private:
+    QMediaPlaylist *playlist;
 
 public:
     MediaPlayer();
-    QMediaPlaylist *playlist;
+
 
     void crear_playList(const QDir *carpeta);
     void silenciar();
