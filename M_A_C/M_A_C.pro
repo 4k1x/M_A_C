@@ -27,12 +27,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES +=  \
         Sources/main.cpp \
         Sources/mainwindow.cpp \
-    Sources/threadplayer.cpp \
     Sources/mediaplayer.cpp
 
 HEADERS += \
         Sources/mainwindow.h \
-    Sources/threadplayer.h \
     Sources/mediaplayer.h
 
 FORMS += \
