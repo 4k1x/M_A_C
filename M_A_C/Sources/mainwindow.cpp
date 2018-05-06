@@ -77,7 +77,7 @@ void MainWindow::on_treeView_musica_pressed(const QModelIndex &index)
     if (info->isDir()) {
         QDir *dir = new QDir(path);
         mPlayer->crear_playList(dir);
-
+        setBtnToPause();
         mPlayer->play();
     }
     else {
