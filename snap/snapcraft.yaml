@@ -1,5 +1,5 @@
 
-  name: cma
+  name: M_A_C
   version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
   summary: Single-line elevator pitch for your amazing snap # 79 char long summary
   description: |
@@ -10,9 +10,21 @@
 
   grade: devel # must be 'stable' to release into candidate/stable channels
   confinement: devmode # use 'strict' once you have the right plugs and slots
-
-  parts:
-    my-part:
-      # See 'snapcraft plugins'
-      plugin: nil
   
+parts:
+ M_A_C:
+    plugin: qmake
+    qt-version: qt5
+    source: .
+    build-packages: ['g++', 'debhelper', 'libgl1-mesa-dev', 'libgles2-mesa-dev', 'libqt4-dev', 'libxpathselect-dev', 'mesa-common-dev', 'pkg-config', 'qt4-qmake', 'qt5-qmake', 'qtbase5-dev', 'qtchooser', 'qtdeclarative5-dev', 'xvfb']
+    stage-packages:
+      - libxpathselect1.4v5
+    filesets:
+       libs:
+        - usr/lib/*/libxpathselect*
+        - usr/lib/libautopilot_driver_qt5.so*
+        - usr/lib/libqttestability*
+    stage:
+      - $libs
+    snap:
+      - $libs
