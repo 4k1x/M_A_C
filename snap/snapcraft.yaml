@@ -16,8 +16,8 @@
     command: mac
   
   
-parts:
- M_A_C:
+  parts:
+   M_A_C:
     plugin: qmake
     qt-version: qt5
     source: .
