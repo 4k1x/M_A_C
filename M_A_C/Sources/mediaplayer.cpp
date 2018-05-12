@@ -4,30 +4,35 @@
 #include <QMediaPlaylist>
 #include <QDir>
 #include <QFileInfo>
+#include <QListWidget>
 #include <QMainWindow>
 
 MediaPlayer::MediaPlayer()
 {
     playlist = new QMediaPlaylist;
     this->setPlaylist(playlist);
-    playlist->addMedia(QUrl::fromLocalFile("/home/clase/Descargas/Canserbero-Mundo-de-piedra.mp3"));
+    //playlist->addMedia(QUrl::fromLocalFile("/home/clase/Descargas/Canserbero-Mundo-de-piedra.mp3"));
 
 }
 
-void MediaPlayer::crear_playList(const QDir *carpeta)
+int MediaPlayer::crear_playList(const QDir *carpeta, QListWidget *lista)
 {
-    QStringList lista;
+
     QFileInfoList listaFicheros = carpeta->entryInfoList(QDir::Files);
     for (int i = 1; i < listaFicheros.size(); i++)
     {
         if (listaFicheros.at(i).suffix() == "mp3") {
-            lista << carpeta->entryInfoList(QDir::Files).at(i).fileName();
-            playlist->addMedia(QUrl::fromLocalFile(listaFicheros.at(i).filePath()));
+            QString item = carpeta->entryInfoList(QDir::Files).at(i).fileName();
+            if (lista->findItems(item,Qt::MatchExactly).size() <= 0) {
+                lista->addItem(carpeta->entryInfoList(QDir::Files).at(i).fileName());
+                playlist->addMedia(QUrl::fromLocalFile(listaFicheros.at(i).filePath()));
 
-            qDebug() << listaFicheros.at(i).filePath();
+                qDebug() << listaFicheros.at(i).filePath();
+            }
         }
 
     }
+    return playlist->mediaCount();
      qDebug() << playlist->mediaCount();
 }
 
@@ -56,5 +61,10 @@ int MediaPlayer::back()
     }
 }
 
+
+void MediaPlayer::setSound(int cancion)
+{
+    playlist->setCurrentIndex(cancion);
+}
 
 

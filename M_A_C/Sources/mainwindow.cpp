@@ -7,6 +7,7 @@
 #include <QFileSystemModel>
 #include <QException>
 #include <QDateTime>
+#include <QStorageInfo>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -15,10 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
    ui->setupUi(this);
    this->setFixedSize(size());
 
-
    mPlayer = new MediaPlayer();
 
-   cargarTreeMusica();
+   cargarTreeMusica(QDir::homePath());
+   cargarListUsb();
 
     btn_play = ui->play_puaseButton;
     btn_play->setCheckable(true);
@@ -29,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(mPlayer,SIGNAL(durationChanged(qint64)),this,SLOT(durationChanged(qint64)));
     connect(mPlayer,SIGNAL(positionChanged(qint64)),this,SLOT(posicion(qint64)));
     connect(mPlayer,SIGNAL(durationChanged(qint64)),this,SLOT(duracion(qint64)));
-
 }
 
 MainWindow::~MainWindow()
@@ -55,9 +55,11 @@ void MainWindow::on_treeView_musica_pressed(const QModelIndex &index)
     QFileInfo *info = new QFileInfo(path);
     if (info->isDir()) {
         QDir *dir = new QDir(path);
-        mPlayer->crear_playList(dir);
-        setBtnToPause();
-        mPlayer->play();
+        int numSongs = mPlayer->crear_playList(dir, ui->listPlay);
+        if (numSongs > 0) {
+            //setBtnToPause(); // Si se quiere que inicie nada mas pulsar la carpeta
+            //mPlayer->play();
+        }
     }
     else {
         if ("mp3" == info->suffix()) {
@@ -66,6 +68,7 @@ void MainWindow::on_treeView_musica_pressed(const QModelIndex &index)
             mPlayer->pause();
             mPlayer->setMedia(QUrl::fromLocalFile(info->absoluteFilePath()));
             mPlayer->play();
+            setBtnToPause();
         }
     }
 }
@@ -132,8 +135,12 @@ void MainWindow::durationChanged(qint64 duration)
 
 void MainWindow::positionChanged(qint64 position)
 {
-    if (!ui->duracion->isSliderDown())
+    if (!ui->duracion->isSliderDown()){
         ui->duracion->setValue(position / 1000);
+    }
+    if (mPlayer->state() == QMediaPlayer::StoppedState){
+        setBtnToPlay();
+    }
 }
 
 void MainWindow::duracion(qint64 duration)
@@ -172,18 +179,58 @@ void MainWindow::setBtnToPause()
     btn_play->setIcon(icono_pausa);
 }
 
-void MainWindow::cargarTreeMusica()
+void MainWindow::cargarTreeMusica(QString path)
 {
-    modelo.setRootPath(QDir::homePath());
-    modelo.index(QDir::homePath());
+    modelo.setRootPath(path);
+    modelo.index(path);
     treeMusica = ui->treeView_musica;
     treeMusica->setModel(&modelo);
-    treeMusica->setRootIndex(modelo.index(QDir::homePath()));
+    treeMusica->setRootIndex(modelo.index(path));
     treeMusica->setColumnHidden(1,true);
     treeMusica->setColumnHidden(2,true);
     treeMusica->setColumnHidden(3,true);
 }
 
+void MainWindow::cargarListUsb()
+{
+    foreach (const QStorageInfo &storage, QStorageInfo::mountedVolumes()) {
+           if (storage.isValid() && storage.isReady()) {
+               if (!storage.isReadOnly()) {
+                   if (storage.device() != "tmpfs") {
+                       QPixmap pixmap_usb(":/new/iconos/Iconos/icono-usb.ico");
+                       QIcon icono_usb(pixmap_usb);
+                       QListWidgetItem *item = new QListWidgetItem();
+                       item->setIcon(icono_usb);
+                       item->setText(storage.name());
+                       if (storage.rootPath() == "/") {
+                           item->setData(2,QVariant("home"));
+                           item->setData(3,QVariant(storage.rootPath()));
+                       }
+                       else {
+                           item->setData(2,QVariant(storage.name()));
+                           item->setData(3,QVariant(storage.rootPath()));
+                       }
+                       ui->listUsb->addItem(item);
+                   }
+               }
+           }
+       }
+}
+
+void MainWindow::on_listPlay_itemClicked(QListWidgetItem *item)
+{
+   int fila = item->listWidget()->row(item);
+   mPlayer->setSound(fila);
+}
 
 
 
+void MainWindow::on_listUsb_itemClicked(QListWidgetItem *item)
+{
+    if (item->data(3) == "/") {
+        cargarTreeMusica(QDir::homePath());
+    }
+    else {
+        cargarTreeMusica(item->data(3).toString());
+    }
+}

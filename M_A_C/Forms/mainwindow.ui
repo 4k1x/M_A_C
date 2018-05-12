@@ -342,11 +342,16 @@
       <height>381</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
     <property name="tabShape">
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
@@ -411,12 +416,41 @@
         <height>351</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>USB</string>
      </attribute>
+     <widget class="QListWidget" name="listUsb">
+      <property name="geometry">
+       <rect>
+        <x>-5</x>
+        <y>1</y>
+        <width>781</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>13</pointsize>
+       </font>
+      </property>
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::IconMode</enum>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

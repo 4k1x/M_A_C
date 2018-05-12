@@ -53,6 +53,10 @@ private slots:
 
     void posicion(qint64 position);
 
+    void on_listPlay_itemClicked(QListWidgetItem *item);
+
+    void on_listUsb_itemClicked(QListWidgetItem *item);
+
 signals:
 
 
@@ -65,7 +69,8 @@ private:
     QTreeView *treeMusica;
     QPushButton *btn_play;
 
-    void cargarTreeMusica();
+    void cargarListUsb();
+    void cargarTreeMusica(QString path);
     void setBtnToPlay();
     void setBtnToPause();
     void setPosicion();
