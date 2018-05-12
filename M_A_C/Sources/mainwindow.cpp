@@ -1,3 +1,13 @@
+
+/**
+ *  @file    mainwindow.cpp
+ *  @author  Francisco Calleja Vazquez (4k1x)
+ *  @date    12/05/2018
+ *  @version 1.0
+ *
+ */
+
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "mediaplayer.h"

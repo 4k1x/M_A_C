@@ -1,3 +1,11 @@
+/**
+ *  @file    mainwindow.h
+ *  @author  Francisco Calleja Vazquez (4k1x)
+ *  @date    12/05/2018
+ *  @version 1.0
+ *
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "mediaplayer.h"

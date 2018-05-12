@@ -10,7 +10,4 @@
         <file>Iconos/icono-mute.png</file>
         <file>Iconos/icono-usb.ico</file>
     </qresource>
-    <qresource prefix="/new/sound">
-        <file>sound/Canserbero-Mundo-de-piedra.mp3</file>
-    </qresource>
 </RCC>

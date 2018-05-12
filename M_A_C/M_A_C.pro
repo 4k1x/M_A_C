@@ -1,10 +1,11 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-04-08T18:38:41
+# Project created by Francisco Calleja 12/05/2018
+# In Qt Creator
 #
 #-------------------------------------------------
 
-QT       += core gui concurrent widgets
+QT += core gui concurrent widgets
 QT += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

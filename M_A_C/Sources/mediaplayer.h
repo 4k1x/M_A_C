@@ -1,3 +1,11 @@
+/**
+ *  @file    mediaplayer.h
+ *  @author  Francisco Calleja Vazquez (4k1x)
+ *  @date    12/05/2018
+ *  @version 1.0
+ *
+ */
+
 #ifndef MEDIAPLAYER_H
 #define MEDIAPLAYER_H
 #include <QMultimedia>
