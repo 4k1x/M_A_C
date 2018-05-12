@@ -43,3 +43,7 @@ RESOURCES += \
 
 target.path = $$[QT_INSTALL_EXAMPLES]/qtconcurrent/progressdialog
 INSTALLS += target
+
+DISTFILES += \
+    Instalador.sh \
+    LICENSE
