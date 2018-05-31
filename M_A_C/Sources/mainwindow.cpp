@@ -160,7 +160,13 @@ void MainWindow::duracion(qint64 duration)
     QString tPosition;
     int min = time.minute();
     int sec = time.second();
-    ui->duracionNum->display(QString::number(min) + ":" + QString::number(sec));
+    if (sec < 10) {
+       ui->duracionNum->display(QString::number(min) + ":0" + QString::number(sec));
+
+    }else {
+        ui->duracionNum->display(QString::number(min) + ":" + QString::number(sec));
+    }
+
 }
 
 void MainWindow::posicion(qint64 position)
@@ -170,7 +176,13 @@ void MainWindow::posicion(qint64 position)
     QString tPosition;
     int min = time.minute();
     int sec = time.second();
-    ui->posicion->display(QString::number(min) + ":" + QString::number(sec));
+    if (sec < 10) {
+        ui->posicion->display(QString::number(min) + ":0" + QString::number(sec));
+
+    }else {
+        ui->posicion->display(QString::number(min) + ":" + QString::number(sec));
+    }
+
 }
 
 void MainWindow::setBtnToPlay()
